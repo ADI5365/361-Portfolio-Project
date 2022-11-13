@@ -1,7 +1,7 @@
 import React from 'react';
 import Review from './Review';
 
-function ReviewList({ reviews, onDelete, onEdit }) {
+function ReviewList({ reviews, onDelete, onEdit}) {
     return (
         <div id="reviews">
             <h2>User Reviews</h2>

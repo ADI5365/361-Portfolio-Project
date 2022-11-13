@@ -92,15 +92,13 @@ ol {
 }
 
 form {
-  font-size: 12pt;
   margin: auto;
+  width: 50%;
   padding: 10px;
   color: #00008B;
   text-align: center;
-  vertical-align: middle;
   border-style: groove;
   border-color: lightgray;
-  width: 50%;
 }
 
 label {
@@ -163,7 +161,7 @@ img {
   float: center;
   height: 400px;
   width: 400px;
-  margin-left: 755px;
+  margin-left: 400px;
 }
 
 
@@ -184,6 +182,11 @@ img {
 
 .card p {
   margin-bottom: 50px;
+}
+
+.card img {
+  width: 30px;
+  height: 30px;
 }
 
 .column {
@@ -210,6 +213,10 @@ img {
 #myBtn, #dots {
   float: center;
   margin-left: 435px;
+}
+
+#flagged {
+  display: none;
 }
 
 

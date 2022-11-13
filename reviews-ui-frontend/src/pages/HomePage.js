@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import ReviewList from '../components/ReviewList';
 import Sort from '../components/Sort';
 import Options from '../components/Options';
-import { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 
 function HomePage({ setReview }) {
 
     const history = useHistory();
-
     const [reviews, setReviews] = useState([]);
 
     const loadReviews = async () => {
@@ -65,7 +64,7 @@ function HomePage({ setReview }) {
                     <ReviewList 
                         reviews={reviews} 
                         onEdit={onEditReview} 
-                        onDelete={onDeleteReview} 
+                        onDelete={onDeleteReview}
                     />
                 </div>
             </main>

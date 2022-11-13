@@ -1,42 +1,31 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import ReviewList from './ReviewList';
 
 function Sort(){
 
-    let sortHighToLow = async(e) => {
-        e.preventDefault();
+    const [reviewList, setReviewList] = useState([]);
 
-        // grabs all cards and puts them into array to be sorted
-        const reviewCards = document.querySelectorAll('card');
-        const cardsArray = Array.from(reviewCards);
+    useEffect(() => {
+        setReviewList(ReviewList.reviewList)
+    }, [])
 
-        // sort cards from highest to lowest ratings
-        let sorted = cardsArray.sort(cardCompareDescend);
-        sorted.forEach(newCard => {document.querySelector('#reviewcardslist').appendChild(newCard)});
+    // function to sort reviews from highest to lowest ratings
+    let sortHighToLow = async () => {
+        const sortedHighLow = [...reviewList].sort((a,b) => {
+            return a.rating > b.rating ? 1 : -1;
+        })
 
-        function cardCompareDescend(item1, item2) {
-            if(item1.dataset.subject < item2.dataset.subject) {return 1;} 
-            else if(item1.dataset.subject > item2.dataset.subject) {return -1;} 
-            else {return 0;}
-        };
-    };
+        setReviewList(sortedHighLow);
+    }
 
-    let sortLowToHigh = async(e) => {
-        e.preventDefault();
+    // function to sort reviews from lowest to highest ratings
+    let sortLowToHigh = async () => {
+        const sortedLowHigh = [...reviewList].sort((a,b) => {
+            return a.rating < b.rating ? 1 : -1
+        })
 
-        // grabs all cards and puts them into array to be sorted
-        const reviewCards = document.querySelectorAll('card');
-        const cardsArray = Array.from(reviewCards);
-
-        // sort cards from lowest to highest ratings
-        let sorted = cardsArray.sort(cardCompareAscend);
-        sorted.forEach(newCard => {document.querySelector('#reviewcardslist').appendChild(newCard)});
-
-        function cardCompareAscend(item1, item2) {
-            if(item1.dataset.subject < item2.dataset.subject) {return -1;} 
-            else if(item1.dataset.subject > item2.dataset.subject) {return 1;} 
-            else {return 0;}
-        };
-    };
+        setReviewList(sortedLowHigh);
+    }
 
     return (
         <form>
