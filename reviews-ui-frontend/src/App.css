@@ -1,0 +1,225 @@
+/*  ===== MOBILE styles (reside at the top and are inherited by all devices) ===== */
+/*  ===== See tablet, desktop, and print @media queries at the bottom. */
+
+
+/*   ----- Imports  -----  */
+
+@import url(//fonts.googleapis.com/css?family=Merriweather);
+
+body {
+  font-family: 'Merriweather', sans-serif;
+  font-size: 1em;
+  line-height: 1.2;
+  color: #00008B;
+}
+
+main {
+  margin-bottom: 75px;
+  margin-top: 50px;
+}
+
+header {
+  padding: 50px;
+  background-color: #00008B;
+  text-align: center;
+  color: lightgray;
+  margin-bottom: 20px;
+}
+
+header p {
+  text-decoration: underline;
+  font-size: 15pt;
+}
+
+footer {
+  bottom: 0;
+  width: 100%;
+  background-color: #00008B;
+  color: lightgray;
+  font-style: italic;
+  position: fixed;
+  border: none;
+}
+
+footer p {
+  font-size: 12px;
+  padding: 0;
+  margin: auto;
+}
+
+
+h1, h2, h3, h4, ul, li, p {
+  margin: 10;
+  padding: 10;
+}
+
+h1 {
+  font-size: 40pt;
+}
+
+h6 {
+  font-style: italics;
+  font-size: 8pt;
+  text-align: center;
+}
+
+h2, h3, p {
+  max-width: 100ch;
+  text-align: center;
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+}
+
+
+ul {
+  max-width: 100ch;
+  text-align: left;
+  margin-left: 250px;
+  margin-bottom: 50px;
+  width: 50%;
+  padding: 10px;
+  list-style-type: square;
+}
+
+ol {
+  max-width: 100ch;
+  text-align: left;
+  margin-left: 600px;
+  margin-bottom: 50px;
+  width: 50%;
+  padding: 10px;
+}
+
+form {
+  font-size: 12pt;
+  margin: auto;
+  padding: 10px;
+  color: #00008B;
+  text-align: center;
+  vertical-align: middle;
+  border-style: groove;
+  border-color: lightgray;
+  width: 50%;
+}
+
+label {
+  display: block;
+  padding: 10px;
+}
+
+input {
+  padding: 10px;
+  margin: 10px;
+  font-size: 12pt;
+  border: 0;
+  box-shadow: 0 0 4px 2px #736E6E;
+  font-family: Merriweather;
+  width: 250px;
+}
+
+button {
+  border-style: groove;
+  background-color: transparent;
+  padding: 5;
+  cursor: pointer;
+  color: #00008B;
+  border-color: #00008B;
+  float: center;
+  font-size: 12pt;
+  margin-right: 20px;
+}
+
+
+nav {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.5;
+  margin-bottom: 30px;
+  padding: 12px 16px;
+  float: center;
+  text-align: center;
+  list-style-type: none;
+}
+
+nav a {
+  color: #00008B;
+  border-color: #00008B;
+  margin: 2rem;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border-style: dotted;
+  vertical-align: middle;
+}
+
+nav a:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+img {
+  margin: auto;
+  float: center;
+  height: 400px;
+  width: 400px;
+  margin-left: 755px;
+}
+
+
+.card {
+  padding: 20px;
+  background-color: #EFEFEF;
+  margin-bottom: 20px;
+  margin-left: 100px;
+  border-style: double;
+  width: 650px;
+}
+
+.card h3 {
+  text-decoration: underline;
+  text-decoration-color: #00008B;
+  text-decoration-style: double;
+}
+
+.card p {
+  margin-bottom: 50px;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  margin-left: 0px;
+}
+
+.row:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.top-react-icons {
+  font-size: 12pt;
+}
+
+
+#more {
+  display: none;
+}
+
+#myBtn, #dots {
+  float: center;
+  margin-left: 435px;
+}
+
+
+@keyframes App-logo {}
+
+/*   ===== TABLET  media query overrides mobile styles ===== */
+@media all and (min-width: 600px) {}
+
+/*   ===== DESKTOP  media query overrides mobile and tablet styles ===== */
+@media all and (min-width: 1080px) {}
+
+/*   ===== PRINT  media query overrides previous styles =====  */
+@media print {}
