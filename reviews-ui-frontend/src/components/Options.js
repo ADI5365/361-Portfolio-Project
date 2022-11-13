@@ -25,7 +25,7 @@ function Options(){
     }
 
     return (
-        <div class="optexplain">
+        <div className="optexplain">
             <h3>Advanced Options</h3>
             <span id="dots"></span><span id="more">
             <ul>
