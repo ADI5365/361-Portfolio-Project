@@ -115,6 +115,29 @@ app.put('/reviews/:_id', (req, res) => {
     });
 });
 
+// calls microservice on AddReviewPage to show random photo on load
+app.use('/imagegenerator', (req, res) => {
+    const fs = require('fs');
+
+    fs.writeFile('./microservice/Request.txt', '1', (err) => {
+        if(err) {
+            return console.error(err);
+        }
+
+        console.log('Microservice called')
+    });
+
+    fs.readFile('./microservice/PhotoFilename.txt', (err, data) => {
+        if(err) {
+            return console.error(err);
+        }
+
+        imgPath = data.toString();
+        res.send(imgPath);
+    });
+    
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}...`);

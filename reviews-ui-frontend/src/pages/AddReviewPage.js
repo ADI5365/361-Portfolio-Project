@@ -1,7 +1,6 @@
 // import dependencies
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
-import PhotoFilename from '../microservice/PhotoFilename.txt';
 
 export const AddReviewPage = () => {
 
@@ -13,18 +12,13 @@ export const AddReviewPage = () => {
     const [date, setDate] = useState('');
     
     const history = useHistory();
-
     const [imgPath, setImgPath] = useState('');
 
-    // write trigger '1' to Request.txt to start microservice generator
-
-    // read photo filename from PhotoFilename.txt to get random image to import
-    fetch(PhotoFilename)
-        .then(response => response.text())
-        .then(photoFilePath => {
-            console.log(photoFilePath);
-            setImgPath(photoFilePath);
-        })
+    const loadImg = async () => {
+        const response = await fetch('/imagegenerator');
+        const filePath = response.text();
+        setImgPath(filePath);
+    }
 
     // calls create model to create and add review to the database
     const addReview = async () => {
@@ -46,7 +40,6 @@ export const AddReviewPage = () => {
         history.push("/");
     };
 
-
     return (
         <>
         <article>
@@ -59,8 +52,8 @@ export const AddReviewPage = () => {
             </ol>
 
             <main className='row'>
-                <div className='column'>
-                    <img src={imgPath} alt='Random item'></img>
+                <div className='column' onLoad={loadImg}>
+                    <img src={imgPath} alt='Random household item'></img>
                 </div>
                 <div className='column'>
                     <form onSubmit={(e) => { e.preventDefault();}}>
