@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 
 
-// CREATE controller
+// CREATE controller - creates user review
 app.post ('/reviews', (req,res) => { 
     reviews.createReview(
         req.body.username, 
@@ -26,8 +26,9 @@ app.post ('/reviews', (req,res) => {
 });
 
 
-// RETRIEVE controller
+// RETRIEVE controllers
 
+// retrieves a review by its ID, for editing purposes
 app.get('/reviews/:_id', (req, res) => {
     const reviewId = req.params._id;
     reviews.findReviewById(reviewId)
@@ -44,6 +45,7 @@ app.get('/reviews/:_id', (req, res) => {
 
 });
 
+// retrieves all reviews to display on home page
 app.get('/reviews', (req, res) => {
     let filter = {};
 
@@ -66,7 +68,7 @@ app.get('/reviews', (req, res) => {
 
 });
 
-// DELETE Controller
+// DELETE Controller - deletes a review by its ID
 app.delete('/reviews/:_id', (req, res) => {
     reviews.deleteById(req.params._id)
         .then(deletedCount => {
@@ -82,7 +84,7 @@ app.delete('/reviews/:_id', (req, res) => {
         });
 });
 
-// UPDATE controller
+// UPDATE controller - updates a review that has been pulled by its ID
 app.put('/reviews/:_id', (req, res) => {
     reviews.replaceReview(
         req.params._id, 

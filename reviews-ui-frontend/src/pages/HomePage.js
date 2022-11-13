@@ -1,3 +1,4 @@
+// import dependencies and components to be displayed on the home page
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -10,17 +11,20 @@ function HomePage({ setReview }) {
     const history = useHistory();
     const [reviews, setReviews] = useState([]);
 
+    // calls a retrieve mdoel to receive and display all reviews
     const loadReviews = async () => {
         const response = await fetch('/reviews');
         const reviews = await response.json();
         setReviews(reviews);
     } 
 
+    // calls the update model to edit a review
     const onEditReview = async review => {
         setReview(review);
         history.push("/edit-review");
     }
 
+    // calls the delete model to delete a review
     const onDeleteReview = async _id => {
         const response = await fetch(`/reviews/${_id}`, { method: 'DELETE' });
         if (response.status === 204) {

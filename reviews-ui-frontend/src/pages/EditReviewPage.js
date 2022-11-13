@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 export const EditReviewPage = ({ review }) => {
  
+    // set states of review portions that are already in the DB
     const [username, setUsername] = useState(review.username);
     const [product, setProduct] = useState(review.product);
     const [rating, setRating] = useState(review.rating);
@@ -12,6 +13,7 @@ export const EditReviewPage = ({ review }) => {
     
     const history = useHistory();
 
+    // calls update model to update review and push changes to DB
     const editReview = async () => {
         const response = await fetch(`/reviews/${review._id}`, {
             method: 'PUT',
@@ -25,6 +27,7 @@ export const EditReviewPage = ({ review }) => {
             headers: {'Content-Type': 'application/json',},
         });
 
+        // whether successfully edited or not, reroutes immediately to home page
         if (response.status === 200) {
             alert("Successfully edited document!");
         } else {

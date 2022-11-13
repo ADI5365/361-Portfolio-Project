@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+// import dependencies
+import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
-import Photo from '../microservice/FinalPhotos/2.jpg';
+import PhotoFilename from '../microservice/PhotoFilename.txt';
 
 export const AddReviewPage = () => {
 
+    // establish states and setting states for all portions of a review
     const [username, setUsername] = useState('');
     const [product, setProduct] = useState('');
     const [rating, setRating] = useState('');
@@ -12,16 +14,19 @@ export const AddReviewPage = () => {
     
     const history = useHistory();
 
-    // const [imgPath, setImgPath] = useState('');
+    const [imgPath, setImgPath] = useState('');
 
-    // useEffect(() => {
-    //     let reader = new FileReader()
-    //     let [file] = '../microservice/PhotoFilename.txt';
-    //     let filePath = reader.readAsText(file);
+    // write trigger '1' to Request.txt to start microservice generator
 
-    //     setImgPath(filePath);
-    // }, [imgPath])
+    // read photo filename from PhotoFilename.txt to get random image to import
+    fetch(PhotoFilename)
+        .then(response => response.text())
+        .then(photoFilePath => {
+            console.log(photoFilePath);
+            setImgPath(photoFilePath);
+        })
 
+    // calls create model to create and add review to the database
     const addReview = async () => {
         const newReview = { username, product, rating, text, date };
         const response = await fetch('/reviews', {
@@ -31,6 +36,8 @@ export const AddReviewPage = () => {
                 'Content-Type': 'application/json',
             },
         });
+
+        // whether review is successfully added or not, reroutes immediately to home page
         if(response.status === 201){
             alert("Successfully added the review!");
         } else {
@@ -53,7 +60,7 @@ export const AddReviewPage = () => {
 
             <main className='row'>
                 <div className='column'>
-                    <img src={Photo} alt='Random item'></img>
+                    <img src={imgPath} alt='Random item'></img>
                 </div>
                 <div className='column'>
                     <form onSubmit={(e) => { e.preventDefault();}}>

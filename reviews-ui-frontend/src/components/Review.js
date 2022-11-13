@@ -5,6 +5,10 @@ import {IconContext} from 'react-icons';
 function Review({ review, onEdit, onDelete }) {
 
     return (
+
+        // set up form of the review card to be displayed when submitted
+        // includes icons for deleting, editing, and flagging a review
+        
         <div className='card'>
             <h3>{review.product}</h3>
             <h4>Username: {review.username}</h4>

@@ -12,6 +12,7 @@ function Options(){
         const moreText = document.getElementById("more");
         const btnText = document.getElementById("myBtn");
         
+        // read more/read less button functionality
         if (dots.style.display === "none") {
             dots.style.display = "inline";
             btnText.innerHTML = "Read more";

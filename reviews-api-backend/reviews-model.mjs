@@ -1,15 +1,13 @@
-// Import dependencies.
 import mongoose from 'mongoose';
 import 'dotenv/config';
 
-// Connect based on the .env file parameters.
+// connect to MongoDB established for this project
 mongoose.connect(
     process.env.MONGODB_CONNECT_STRING,
     { useNewUrlParser: true }
 );
 const db = mongoose.connection;
 
-// Confirm that the database has connected and print a message in the console.
 db.once("open", (err) => {
     if(err){
         res.status(500).json({ error: '500:Connection to the server failed.' });
@@ -18,7 +16,7 @@ db.once("open", (err) => {
     }
 });
 
-// SCHEMA: Define the collection's schema.
+// define the review schema for the project then compile the model
 const reviewSchema = mongoose.Schema({
 	username: { type: String, required: true },
 	product: { type: String, required: true },
@@ -27,11 +25,9 @@ const reviewSchema = mongoose.Schema({
     date: { type: Date, required: true }
 });
 
-// Compile the model from the schema.
 const Review = mongoose.model("Review", reviewSchema);
 
-
-// CREATE model
+// CREATE model - form and function of the review
 const createReview = async (username, product, rating, text, date) => {
     const review = new Review({ 
         username: username,
@@ -43,14 +39,15 @@ const createReview = async (username, product, rating, text, date) => {
     return review.save();
 }
 
-
 // RETRIEVE models 
 
+// to find the reviews for display
 const findReviews = async (filter) => {
     const query = Review.find(filter);
     return query.exec();
 }
 
+// to find a review based on its ID
 const findReviewById = async (_id) => {
     const query = Review.findById(_id);
     return query.exec();
@@ -64,7 +61,7 @@ const deleteById = async (_id) => {
 };
 
 
-// REPLACE model
+// REPLACE model - for updating parts of a review
 const replaceReview = async (_id, username, product, rating, text, date) => {
     const result = await Review.replaceOne({_id: _id }, {
         username: username,
@@ -75,7 +72,6 @@ const replaceReview = async (_id, username, product, rating, text, date) => {
     });
     return result.modifiedCount;
 }
-
 
 
 // Export our variables for use in the controller file.
