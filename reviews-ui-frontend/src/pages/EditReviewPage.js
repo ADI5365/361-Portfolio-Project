@@ -46,7 +46,7 @@ export const EditReviewPage = ({ review }) => {
             <form onSubmit={(e) => { e.preventDefault();}}>
                 <fieldset>
                     <legend>Which review are you editing?</legend>
-                    <label for="username">Username: </label>
+                    <label htmlFor="username">Username: </label>
                     <input
                         type="text"
                         placeholder="Your screen name"
@@ -54,7 +54,7 @@ export const EditReviewPage = ({ review }) => {
                         onChange={e => setUsername(e.target.value)} 
                         id="username" />
                     
-                    <label for="product">Product: </label>
+                    <label htmlFor="product">Product: </label>
                     <input
                         type="text"
                         value={product}
@@ -62,7 +62,7 @@ export const EditReviewPage = ({ review }) => {
                         onChange={e => setProduct(e.target.value)} 
                         id="product" />
 
-                    <label for="rating">Rating: </label>
+                    <label htmlFor="rating">Rating: </label>
                     <input
                         type="text"
                         placeholder="Rating out of 5"
@@ -70,7 +70,7 @@ export const EditReviewPage = ({ review }) => {
                         onChange={e => setRating(e.target.value)} 
                         id="rating" />
 
-                    <label for="text">Write your review: </label>
+                    <label htmlFor="text">Write your review: </label>
                     <input
                         type="textarea"
                         placeholder="Item review goes here..."
@@ -78,7 +78,7 @@ export const EditReviewPage = ({ review }) => {
                         onChange={e => setText(e.target.value)} 
                         id="text" /> 
 
-                    <label for="date">Date Used: </label>
+                    <label htmlFor="date">Date Used: </label>
                     <input
                         type="date"
                         value={date}
@@ -86,7 +86,7 @@ export const EditReviewPage = ({ review }) => {
                         id="date"
                         required="required" />
 
-                    <label for="submit">
+                    <label htmlFor="submit">
                     <button
                         onClick={editReview}
                         id="submit"

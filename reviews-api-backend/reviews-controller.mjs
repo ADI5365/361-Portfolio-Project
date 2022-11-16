@@ -6,6 +6,31 @@ const PORT = process.env.PORT;
 const app = express();
 app.use(express.json());
 
+// calls microservice on AddReviewPage to show random photo on load
+app.post('/reviews', (req, res) => {
+    const fs = require('fs');
+    let imgPath;
+
+    fs.writeFile('./microservice/Request.txt', '1', (err) => {
+        if(err) {
+            return console.error(err);
+        }
+
+        console.log('Microservice called')
+    });
+
+    fs.readFile('./microservice/PhotoFilename.txt', (err, data) => {
+        if(err) {
+            return console.error(err);
+        }
+
+        imgPath = data.toString();
+    })
+        .then(imgPath => {
+            res.send(imgPath);
+        })
+    
+});
 
 // CREATE controller - creates user review
 app.post ('/reviews', (req,res) => { 
@@ -113,29 +138,6 @@ app.put('/reviews/:_id', (req, res) => {
         console.error(error);
         res.status(400).json({ Error: 'Request to update a document failed' });
     });
-});
-
-// calls microservice on AddReviewPage to show random photo on load
-app.use('/imagegenerator', (req, res) => {
-    const fs = require('fs');
-
-    fs.writeFile('./microservice/Request.txt', '1', (err) => {
-        if(err) {
-            return console.error(err);
-        }
-
-        console.log('Microservice called')
-    });
-
-    fs.readFile('./microservice/PhotoFilename.txt', (err, data) => {
-        if(err) {
-            return console.error(err);
-        }
-
-        imgPath = data.toString();
-        res.send(imgPath);
-    });
-    
 });
 
 

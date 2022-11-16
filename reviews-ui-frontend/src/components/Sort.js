@@ -33,10 +33,10 @@ function Sort(){
                 <legend><h2>Sort by:</h2></legend>
 
                 <button id="hightolow" onClick={sortHighToLow}>High to Low</button><br/><br/>
-                <label for="hightolow">Sort from highest to lowest ratings</label><br/><br/>
+                <label htmlFor="hightolow">Sort from highest to lowest ratings</label><br/><br/>
             
                 <button id="lowtohigh" onClick={sortLowToHigh}>Low to High</button><br/><br/>
-                <label for="lowtohigh">Sort from lowest to highest ratings</label><br/><br/>
+                <label htmlFor="lowtohigh">Sort from lowest to highest ratings</label><br/><br/>
             </fieldset>
         </form>
     )

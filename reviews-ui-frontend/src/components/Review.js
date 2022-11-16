@@ -14,7 +14,7 @@ function Review({ review, onEdit, onDelete }) {
             <h4>Username: {review.username}</h4>
             <h4>Rating: {review.rating} / 5</h4>
             <p>{review.text}</p>
-            <h6>Date item was tested: {review.date.substring(0,10)}</h6>
+            <h6>Review date: {review.date.substring(0,10)}</h6>
             
             <IconContext.Provider value={{className: 'top-react-icons'}}>
                 <button><MdOutlineNotInterested onClick={() => onDelete(review._id)} /></button>

@@ -3,19 +3,25 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import ReviewList from '../components/ReviewList';
-import Sort from '../components/Sort';
-import Options from '../components/Options';
+import Review from '../components/Review';
 
 function HomePage({ setReview }) {
 
     const history = useHistory();
     const [reviews, setReviews] = useState([]);
 
-    // calls a retrieve mdoel to receive and display all reviews
+    // calls a retrieve model to receive and display all reviews
     const loadReviews = async () => {
         const response = await fetch('/reviews');
         const reviews = await response.json();
         setReviews(reviews);
+
+        let counter = 0;
+        for(let i=0; i<reviews.length; i++) {
+            counter++;
+        };
+
+        console.log(`There are currently ${counter} user reviews.`);
     } 
 
     // calls the update model to edit a review
@@ -34,6 +40,25 @@ function HomePage({ setReview }) {
         } else {
             console.error(`Failed to delete review with _id = ${_id}, status code = ${response.status}`)
         }
+    }
+
+    // event handler for the buttons to sort reviews by rating
+    const onSortReviews = async (rating) => {
+        let sortedReviews = [...reviews];
+        
+        if(rating === 'highToLow') {
+            sortedReviews.sort((a, b) => b.rating - a.rating);
+        } else if(rating === 'lowToHigh') {
+            sortedReviews.sort((a,b) => a.rating - b.rating);
+        }
+
+        sortedReviews.map((review, i) => 
+            <Review 
+                review={review} 
+                key={i}
+                onDelete={onDeleteReview}
+                onEdit={onEditReview} 
+            />)
     }
 
     useEffect(() => {
@@ -58,19 +83,12 @@ function HomePage({ setReview }) {
                 </p>
             </section>
             
-            <main className='row'>
-                <div className='column'>
-                    <Sort />
-                    <Options />
-                </div>
-
-                <div className='column'>
-                    <ReviewList 
-                        reviews={reviews} 
-                        onEdit={onEditReview} 
-                        onDelete={onDeleteReview}
-                    />
-                </div>
+            <main>
+                <ReviewList 
+                    reviews={reviews}
+                    onEdit={onEditReview}
+                    onDelete={onDeleteReview}
+                    onSort={onSortReviews}/>
             </main>
             
         </article>
