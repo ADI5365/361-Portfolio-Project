@@ -32,14 +32,23 @@ function HomePage({ setReview }) {
 
     // calls the delete model to delete a review
     const onDeleteReview = async _id => {
-        const response = await fetch(`/reviews/${_id}`, { method: 'DELETE' });
-        if (response.status === 204) {
-            const getResponse = await fetch('/reviews');
-            const reviews = await getResponse.json();
-            setReviews(reviews);
+
+        if(window.confirm('Are you sure you want to delete your review')) {
+            const response = await fetch(`/reviews/${_id}`, { method: 'DELETE' });
+
+            if (response.status === 204) {
+                const getResponse = await fetch('/reviews');
+                const reviews = await getResponse.json();
+                setReviews(reviews);
+            } else {
+                console.error(`Failed to delete review with _id = ${_id}, status code = ${response.status}`)
+            }
+
         } else {
-            console.error(`Failed to delete review with _id = ${_id}, status code = ${response.status}`)
+            alert('Review was not deleted')
         }
+
+        
     }
 
     // event handler for the buttons to sort reviews by rating

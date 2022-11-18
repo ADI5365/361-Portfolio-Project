@@ -8,26 +8,26 @@ function Options(){
         e.preventDefault();
 
         // set up box to provide more direction if the user wants to see it
-        const dots = document.getElementById("dots");
-        const moreText = document.getElementById("more");
-        const btnText = document.getElementById("myBtn");
+        const dots = document.getElementById('dots');
+        const moreText = document.getElementById('more');
+        const btnText = document.getElementById('myBtn');
         
         // read more/read less button functionality
-        if (dots.style.display === "none") {
-            dots.style.display = "inline";
-            btnText.innerHTML = "Read more";
-            moreText.style.display = "none";
+        if (dots.style.display === 'none') {
+            dots.style.display = 'inline';
+            btnText.innerHTML = 'Read more';
+            moreText.style.display = 'none';
         } else {
-            dots.style.display = "none";
-            btnText.innerHTML = "Read less";
-            moreText.style.display = "inline";
+            dots.style.display = 'none';
+            btnText.innerHTML = 'Read less';
+            moreText.style.display = 'inline';
         }
     }
 
     return (
-        <div className="optexplain">
+        <div>
             <h3>Advanced Options</h3>
-            <span id="dots"></span><span id="more">
+            <span id='dots'></span><span id='more'>
             <ul>
                 <IconContext.Provider value={{className: 'top-react-icons'}}>
                     <li><MdOutlineNotInterested /> - allows a user to delete their reviews</li>
@@ -35,7 +35,7 @@ function Options(){
                     <li><MdFlag /> - allows a user to flag an offensive review for admins</li>
                 </IconContext.Provider>
             </ul></span>
-            <button id="myBtn" onClick={moreOptions}>Read more</button>
+            <button id='myBtn' onClick={moreOptions}>Read more</button>
         </div>
     )
 }

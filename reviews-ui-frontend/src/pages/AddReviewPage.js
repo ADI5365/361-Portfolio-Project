@@ -1,6 +1,7 @@
 // import dependencies
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
+import Photo from './FinalPhotos/20.jpg'
 
 export const AddReviewPage = () => {
 
@@ -12,18 +13,7 @@ export const AddReviewPage = () => {
     const [date, setDate] = useState('');
     
     const history = useHistory();
-    const [imgPath, setImgPath] = useState('');
 
-    // call the backend to use random image generator microservice
-    const loadImg = async () => {
-        const response = await fetch('/reviews');
-        const filePath = response.text();
-        setImgPath(filePath);
-    }
-
-    useEffect(() => {
-        loadImg();
-    }, []);
 
     // calls create model to create and add review to the database
     const addReview = async () => {
@@ -40,7 +30,7 @@ export const AddReviewPage = () => {
         if(response.status === 201){
             alert("Successfully added the review!");
         } else {
-            alert(`Failed to add movie, status code = ${response.status}`);
+            alert(`Failed to add review, status code = ${response.status}`);
         }
         history.push("/");
     };
@@ -54,11 +44,12 @@ export const AddReviewPage = () => {
                 <li>Enter a numerical rating from 1 to 5.</li>
                 <li>In the text area write your review of the product.</li>
                 <li>You're all done! Click "submit" and your review will appear alongside others under User Reviews.</li>
+                <li>Optional: you can enter a PIN when submitting your review to edit or delete your review later.</li>
             </ol>
 
             <main className='row'>
-                <div className='column' onLoad={loadImg}>
-                    <img src={imgPath} alt='Random household item'></img>
+                <div className='column'>
+                    <img src={Photo} alt='Fidget toys'></img>
                 </div>
                 <div className='column'>
                     <form onSubmit={(e) => { e.preventDefault();}}>
@@ -82,7 +73,7 @@ export const AddReviewPage = () => {
 
                             <label htmlFor="rating">Rating: </label>
                             <input
-                                type="text"
+                                type="number"
                                 placeholder="Rating out of 5"
                                 value={rating}
                                 onChange={e => setRating(e.target.value)} 
