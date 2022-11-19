@@ -8,7 +8,6 @@ function HomePage({ setReview }) {
 
     const history = useHistory();
     const [reviews, setReviews] = useState([]);
-    const [sortedReviews, setSortedReviews] = useState([]);
 
     // calls a retrieve model to receive and display all reviews
     const loadReviews = async () => {
@@ -20,7 +19,6 @@ function HomePage({ setReview }) {
         for(let i=0; i<reviews.length; i++) {
             counter++;
         };
-
         console.log(`There are currently ${counter} user reviews.`);
     } 
 
@@ -50,20 +48,36 @@ function HomePage({ setReview }) {
     }
 
     // event handler for the buttons to sort reviews by rating
-    const onSortReviews = async (rating) => {
+    const ratingSort = async (event, rating) => {
+        event.preventDefault(); 
         const response = await fetch('/reviews');
-        const receivedReviews = await response.json();
-        
-        for(let i=0; i<receivedReviews.length; i++) {
+        const sortedReviews = await response.json();
+
+        for(let i=0; i<sortedReviews.length; i++) {
             if(rating === 'highToLow') {
-                receivedReviews.sort((a, b) => b.rating - a.rating);
+                sortedReviews.sort((a, b) => b.rating - a.rating);
             } else if(rating === 'lowToHigh') {
-                receivedReviews.sort((a,b) => a.rating - b.rating);
+                sortedReviews.sort((a,b) => a.rating - b.rating);
             }
         };
+        setReviews(sortedReviews)
+    };
 
-        setSortedReviews(receivedReviews)
-    }
+    // event handler for the buttons to sort reviews by product name
+    const productSort = async (event, product) => {
+        event.preventDefault(); 
+        const response = await fetch('/reviews');
+        const productReviews = await response.json();
+
+        for(let i=0; i<productReviews.length; i++) {
+            if(product === 'aToZ') {
+                productReviews.sort((a, b) => a.product > b.product ? 1 : (b.product > a.product ? -1 : 0));
+            } else if(product === 'zToA') {
+                productReviews.sort((a,b) => b.product > a.product ? 1 : (a.product > b.product ? -1 : 0));
+            }
+        };
+        setReviews(productReviews)
+    };
 
     useEffect(() => {
         loadReviews();
@@ -92,7 +106,8 @@ function HomePage({ setReview }) {
                     reviews={reviews}
                     onEdit={onEditReview}
                     onDelete={onDeleteReview}
-                    onSort={onSortReviews}/>
+                    ratingSort={ratingSort}
+                    productSort={productSort}/>
             </main>
             
         </article>
