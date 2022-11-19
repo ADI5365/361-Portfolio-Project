@@ -14,7 +14,6 @@ function Options(){
         
         // read more/read less button functionality
         if (dots.style.display === 'none') {
-            dots.style.display = 'inline';
             btnText.innerHTML = 'Read more';
             moreText.style.display = 'none';
         } else {
