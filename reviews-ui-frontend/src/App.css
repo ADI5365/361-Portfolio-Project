@@ -211,8 +211,9 @@ img {
 }
 
 #myBtn, #dots {
-  float: center;
-  margin-left: 435px;
+  float: right;
+  vertical-align: middle;
+  margin-right: 425px;
 }
 
 #hiddenIcon {

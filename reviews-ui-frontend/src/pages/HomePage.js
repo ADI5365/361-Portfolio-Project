@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import ReviewList from '../components/ReviewList';
-import Review from '../components/Review';
 
 function HomePage({ setReview }) {
 
     const history = useHistory();
     const [reviews, setReviews] = useState([]);
+    const [sortedReviews, setSortedReviews] = useState([]);
 
     // calls a retrieve model to receive and display all reviews
     const loadReviews = async () => {
@@ -46,28 +46,23 @@ function HomePage({ setReview }) {
 
         } else {
             alert('Review was not deleted')
-        }
-
-        
+        }  
     }
 
     // event handler for the buttons to sort reviews by rating
     const onSortReviews = async (rating) => {
-        let sortedReviews = [...reviews];
+        const response = await fetch('/reviews');
+        const receivedReviews = await response.json();
         
-        if(rating === 'highToLow') {
-            sortedReviews.sort((a, b) => b.rating - a.rating);
-        } else if(rating === 'lowToHigh') {
-            sortedReviews.sort((a,b) => a.rating - b.rating);
-        }
+        for(let i=0; i<receivedReviews.length; i++) {
+            if(rating === 'highToLow') {
+                receivedReviews.sort((a, b) => b.rating - a.rating);
+            } else if(rating === 'lowToHigh') {
+                receivedReviews.sort((a,b) => a.rating - b.rating);
+            }
+        };
 
-        sortedReviews.map((review, i) => 
-            <Review 
-                review={review} 
-                key={i}
-                onDelete={onDeleteReview}
-                onEdit={onEditReview} 
-            />)
+        setSortedReviews(receivedReviews)
     }
 
     useEffect(() => {
