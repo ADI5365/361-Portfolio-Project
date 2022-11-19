@@ -181,7 +181,7 @@ img {
 }
 
 .card p {
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 
 .card img {
@@ -218,6 +218,9 @@ img {
 
 #hiddenIcon {
   display: none;
+  float: right;
+  color: red;
+  font-size: 30px;
 }
 
 

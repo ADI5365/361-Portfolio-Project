@@ -30,9 +30,9 @@ function Options(){
             <span id='dots'></span><span id='more'>
             <ul>
                 <IconContext.Provider value={{className: 'top-react-icons'}}>
-                    <li><MdOutlineNotInterested /> - allows a user to delete their reviews</li>
-                    <li><MdOutlineDriveFileRenameOutline /> - allows a user to edit their reviews</li>
-                    <li><MdFlag /> - allows a user to flag an offensive review for admins</li>
+                    <li><MdOutlineNotInterested /> - users can delete their reviews</li>
+                    <li><MdOutlineDriveFileRenameOutline /> - users can edit their reviews</li>
+                    <li><MdFlag /> - users can flag an offensive or spam review for admins</li>
                 </IconContext.Provider>
             </ul></span>
             <button id='myBtn' onClick={moreOptions}>Read more</button>

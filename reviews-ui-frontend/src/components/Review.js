@@ -1,8 +1,18 @@
 import React from 'react';
-import { MdOutlineNotInterested, MdOutlineDriveFileRenameOutline, MdFlag } from 'react-icons/md';
+import { MdOutlineNotInterested, MdOutlineDriveFileRenameOutline, MdFlag, MdOutlinedFlag } from 'react-icons/md';
 import {IconContext} from 'react-icons';
 
 function Review({ review, onEdit, onDelete }) {
+
+    // function to display a flag icon on a review when flagged by a user
+    let flagReview = async() => {
+        const flag = document.getElementById('hiddenIcon');
+        if(flag.style.display === 'none') {
+            flag.style.display = 'inline';
+        } else {
+            flag.style.display ='none';
+        };
+    };
 
     return (
 
@@ -18,8 +28,10 @@ function Review({ review, onEdit, onDelete }) {
             <IconContext.Provider value={{className: 'top-react-icons'}}>
                 <button><MdOutlineNotInterested onClick={() => onDelete(review._id)} /></button>
                 <button><MdOutlineDriveFileRenameOutline onClick={() => onEdit(review)} /></button>
-                <button><MdFlag /></button>
+                <button id='flagBtn' onClick={flagReview}><MdFlag /></button>
             </IconContext.Provider>
+
+            <span id='hiddenIcon'><MdOutlinedFlag /></span>
         </div>
     );
 }
