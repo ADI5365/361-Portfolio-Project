@@ -10,21 +10,22 @@ function ReviewList({ reviews, onDelete, onEdit, ratingSort, productSort}) {
             <div className='column'>
                 <form id="sortbuttons">
                     <fieldset>
-                        <legend><h2>Sort by:</h2></legend>
+                        <legend><h2>Sort:</h2></legend>
 
-                        <button id="highToLow" onClick={event => ratingSort(event, 'highToLow')}>High to Low</button><br/>
-                        <label htmlFor="highToLow">Sort from highest to lowest ratings</label><br/><br/>
+                        <label htmlFor="highToLow">Highest to lowest ratings</label>
+                        <button id="highToLow" onClick={event => ratingSort(event, 'highToLow')}>High to Low</button>
             
-                        <button id="lowToHigh" onClick={event => ratingSort(event, 'lowToHigh')}>Low to High</button><br/>
-                        <label htmlFor="lowToHigh">Sort from lowest to highest ratings</label><br/><br/>
+                        <label htmlFor="lowToHigh">Lowest to highest ratings</label>
+                        <button id="lowToHigh" onClick={event => ratingSort(event, 'lowToHigh')}>Low to High</button>
 
-                        <button id="aToZ" onClick={event => productSort(event, 'aToZ')}>Alphabetically</button><br/>
-                        <label htmlFor="aToZ">Sort alphabetically by product name</label><br/><br/>
+                        <label htmlFor="aToZ">Alphabetically by product name</label>
+                        <button id="aToZ" onClick={event => productSort(event, 'aToZ')}>Alphabetically</button>
             
-                        <button id="zToA" onClick={event => productSort(event, 'zToA')}>Reverse Alphabetically</button><br/>
-                        <label htmlFor="zToA">Sort reverse alphabetically by product name</label><br/><br/>
+                        <label htmlFor="zToA">Reverse alphabetically by product name</label>
+                        <button id="zToA" onClick={event => productSort(event, 'zToA')}>Reverse Alphabetically</button>
                     </fieldset>
                 </form>
+
                 <Options />
             </div>
 

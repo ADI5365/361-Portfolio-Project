@@ -31,7 +31,7 @@ function HomePage({ setReview }) {
     // calls the delete model to delete a review
     const onDeleteReview = async _id => {
 
-        if(window.confirm('Are you sure you want to delete your review')) {
+        if(window.confirm('Are you sure you want to delete your review?')) {
             const response = await fetch(`/reviews/${_id}`, { method: 'DELETE' });
 
             if (response.status === 204) {
@@ -51,16 +51,16 @@ function HomePage({ setReview }) {
     const ratingSort = async (event, rating) => {
         event.preventDefault(); 
         const response = await fetch('/reviews');
-        const sortedReviews = await response.json();
+        const ratingReviews = await response.json();
 
-        for(let i=0; i<sortedReviews.length; i++) {
+        for(let i=0; i<ratingReviews.length; i++) {
             if(rating === 'highToLow') {
-                sortedReviews.sort((a, b) => b.rating - a.rating);
+                ratingReviews.sort((a, b) => b.rating - a.rating);
             } else if(rating === 'lowToHigh') {
-                sortedReviews.sort((a,b) => a.rating - b.rating);
+                ratingReviews.sort((a,b) => a.rating - b.rating);
             }
         };
-        setReviews(sortedReviews)
+        setReviews(ratingReviews)
     };
 
     // event handler for the buttons to sort reviews by product name
